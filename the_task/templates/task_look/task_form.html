@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <h2>{{ view.title }}</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn-green">Зберегти</button>
+    </form>
+</div>
+<div class="category">
+    <a href="{% url 'taskss:task-list' %}">
+        <img src="{% static 'mingcute_arrows-left-line.png' %}" width="64" height="64">
+    </a>
+</div>
+{% endblock %}

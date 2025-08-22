@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h2>Список Завдань</h2>
+    <a href="{% url 'taskss:task-create'%}" class="btn-dark">Додати завдання</a>
+
+
+    <br><br>
+
+    <form method="get" class="form-inline mb-3">
+        {{ form.status.label_tag }}
+        {{ form.status }}
+        <button type="submit" class="btn-dark">Фільтрувати</button>
+    </form>
+
+    <ul class="list-group">
+        {% for task in tasks %}
+        <li class="list-group-item">
+            <a href="{% url 'taskss:task-info' task.pk %}">{{ task.title }}</a>
+            <span class="btn-small">{{ task.status }}</span>
+            <span class="btn-small">{{ task.priority }}</span>
+            <form action="{% url 'taskss:task-complete' task.pk%}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn-small">Помітити як виконане</button>
+        </form>
+        </li>
+        {% empty %}
+        <li class="list-group-item"> Завдання не знайдено</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

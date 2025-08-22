@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <h2>{{ task.title }}</h2>
+    <p>{{ task.description}}</p>
+    <p>Статус: <span class="btn-small">{{ task.status }}</span></p>
+    <p>Пріорітет: <span class="btn-small">{{ task.priority}}</span></p>
+    <a href="{% url 'taskss:task-update' task.id %}" class="btn-green">Редагувати</a>
+    <a href="{% url 'taskss:task-delete' task.id %}" class="btn-red">Видалити</a>
+</div>
+<div class="category">
+    <a href="{% url 'taskss:task-list' %}">
+        <img src="{% static 'mingcute_arrows-left-line.png' %}" width="64" height="64">
+    </a>
+</div>
+{% endblock %}

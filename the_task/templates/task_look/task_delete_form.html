@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <h2>Видалення завдання</h2>
+    <p>Видалити завдання {object.title}?</p>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn-red">Так</button>
+      <a href="{% url 'taskss:task-list' %}" class="btn-green">Ні</a>
+    </form>
+</div>
+{% endblock %}
